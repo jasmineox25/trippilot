@@ -1,4 +1,4 @@
-# TripPilot Orpin — Gemini 3 Hackathon Submission
+# TripPilot — Gemini 3 Hackathon Submission
 
 > **AI-powered travel planning that actually works.** Turn messy travel ideas into executable, constraint-aware itineraries using Gemini 3's multimodal and structured reasoning capabilities.
 
@@ -17,11 +17,11 @@ Planning a multi-stop trip sounds simple, but real-world constraints make it sur
 
 Most travel apps ignore these constraints. You end up with a "plan" that falls apart the moment you start walking.
 
-## Our Solution: TripPilot Orpin
+## Our Solution: TripPilot
 
-TripPilot Orpin combines **deterministic constraint checking** with **Gemini 3's reasoning capabilities** to create plans that actually work.
+TripPilot combines **deterministic constraint checking** with **Gemini 3's reasoning capabilities** to create plans that actually work.
 
-### How Gemini 3 Powers TripPilot Orpin
+### How Gemini 3 Powers TripPilot
 
 | Capability                | Gemini 3 Feature Used      | What It Does                                           |
 | ------------------------- | -------------------------- | ------------------------------------------------------ |
@@ -83,7 +83,7 @@ When conflicts are detected, Gemini 3 reasons through the problem:
 ```mermaid
 flowchart LR
   subgraph Browser["Browser (React + TypeScript)"]
-    UI["TripPilot Orpin UI"]
+    UI["TripPilot UI"]
     Chat["Chat Mode\n(Multi-turn)"]
     Plan["Plan Mode\n(Structured)"]
     Voice["Voice Input\n(Hold-to-talk)"]
@@ -172,36 +172,29 @@ const response = await callGemini({
 
 ## Run Locally
 
-### Prerequisites
-
-- Node.js 18+
-- Google Cloud API keys (Gemini, Maps)
-
-### Setup
-
 ```bash
 # Clone and install
-git clone <your-repo-url>
-cd trippilot
+git clone https://github.com/ouxiao/trippilot.git
+cd trippilot/trippilot
 npm install
 
 # Configure environment
 cp .env.example .env.local
-# Edit .env.local:
-# VITE_GEMINI_API_KEY=your_gemini_key
-# VITE_GOOGLE_MAPS_API_KEY=your_maps_key
+# Edit .env.local with your API keys
 
 # Run development server
 npm run dev
 # Opens http://localhost:5173
 ```
 
+For detailed setup (Firebase, Vercel deployment), see [docs/development.md](docs/development.md).
+
 ---
 
 ## Demo
 
 - **Live App**: [trippilot-orpin.vercel.app](https://trippilot-orpin.vercel.app)
-- **Video Demo**: [3-minute walkthrough](link-to-video)
+- **Video Demo**: Coming soon (see [demo_video_script.md](demo_video_script.md) for the script)
 
 ### Demo Workflow
 
@@ -214,9 +207,9 @@ npm run dev
 
 ---
 
-## What Makes TripPilot Orpin Different
+## What Makes TripPilot Different
 
-| Traditional Travel Apps | TripPilot Orpin                  |
+| Traditional Travel Apps | TripPilot                  |
 | ----------------------- | -------------------------------- |
 | Lists of places         | **Constraint-aware schedules**   |
 | Free-form chat          | **Structured, actionable JSON**  |
