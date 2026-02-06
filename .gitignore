@@ -1,0 +1,30 @@
+# OS / Editor
+.DS_Store
+.idea/
+.vscode/
+
+# Env files (never commit real secrets)
+.env
+.env.*
+!.env.example
+
+# Node
+node_modules/
+dist/
+build/
+coverage/
+*.local
+
+# Vercel
+.vercel/
+
+# Python
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.venv/
+venv/
+
+# Logs
+logs/
+*.log

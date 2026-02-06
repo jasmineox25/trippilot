@@ -1,0 +1,43 @@
+{
+  "headers": [
+    {
+      "source": "/(.*)",
+      "headers": [
+        {
+          "key": "Cross-Origin-Opener-Policy",
+          "value": "same-origin-allow-popups"
+        },
+        {
+          "key": "Cross-Origin-Embedder-Policy",
+          "value": "unsafe-none"
+        }
+      ]
+    }
+  ],
+  "rewrites": [
+    {
+      "source": "/popup-help/en",
+      "destination": "/popup-help/en/index.html"
+    },
+    {
+      "source": "/popup-help/en/(.*)",
+      "destination": "/popup-help/en/index.html"
+    },
+    {
+      "source": "/popup-help",
+      "destination": "/popup-help/index.html"
+    },
+    {
+      "source": "/popup-help/(.*)",
+      "destination": "/popup-help/index.html"
+    },
+    {
+      "source": "/api/(.*)",
+      "destination": "/api/$1"
+    },
+    {
+      "source": "/(.*)",
+      "destination": "/index.html"
+    }
+  ]
+}

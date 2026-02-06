@@ -1,0 +1,5 @@
+{
+  "name": "TripPilot",
+  "description": "TripPilot：从想法到路线，一键可执行。智能规划行程、优化路线、地图可视化与云端同步。",
+  "requestFramePermissions": ["geolocation"]
+}

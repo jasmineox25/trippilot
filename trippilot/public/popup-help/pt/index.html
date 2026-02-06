@@ -1,0 +1,790 @@
+<!doctype html>
+<html lang="pt">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Permitir pop-ups | TripPilot</title>
+    <meta
+      name="description"
+      content="Se o pop-up de login do Google não apareceu, o navegador provavelmente bloqueou pop-ups. Siga estes passos (desktop e celular) para permitir pop-ups."
+    />
+
+    <script>
+      (function () {
+        try {
+          var params = new URLSearchParams(location.search);
+          var forced = String(params.get("lang") || "").toLowerCase();
+          var sys =
+            (navigator.languages && navigator.languages[0]) ||
+            navigator.language ||
+            "";
+          var base = String(forced || sys)
+            .toLowerCase()
+            .split("-")[0];
+          var path = String(location.pathname || "");
+
+          var current = "zh";
+          if (path.indexOf("/popup-help/en") !== -1) current = "en";
+          if (path.indexOf("/popup-help/ja") !== -1) current = "ja";
+          if (path.indexOf("/popup-help/ko") !== -1) current = "ko";
+          if (path.indexOf("/popup-help/fr") !== -1) current = "fr";
+          if (path.indexOf("/popup-help/es") !== -1) current = "es";
+          if (path.indexOf("/popup-help/de") !== -1) current = "de";
+          if (path.indexOf("/popup-help/pt") !== -1) current = "pt";
+          if (path.indexOf("/popup-help/ru") !== -1) current = "ru";
+
+          var target = "en";
+          if (forced === "zh" || base === "zh") target = "zh";
+          if (forced === "ja" || base === "ja") target = "ja";
+          if (forced === "ko" || base === "ko") target = "ko";
+          if (forced === "fr" || base === "fr") target = "fr";
+          if (forced === "es" || base === "es") target = "es";
+          if (forced === "de" || base === "de") target = "de";
+          if (forced === "pt" || base === "pt") target = "pt";
+          if (forced === "ru" || base === "ru") target = "ru";
+          if (forced === "en" || base === "en") target = "en";
+
+          if (current !== target) {
+            location.replace(
+              target === "zh" ? "/popup-help/" : "/popup-help/" + target + "/",
+            );
+          }
+        } catch {
+          // ignore
+        }
+      })();
+    </script>
+
+    <style>
+      :root {
+        --bg: #0b1220;
+        --card: rgba(255, 255, 255, 0.06);
+        --card2: rgba(255, 255, 255, 0.08);
+        --border: rgba(255, 255, 255, 0.12);
+        --text: rgba(255, 255, 255, 0.9);
+        --muted: rgba(255, 255, 255, 0.7);
+        --muted2: rgba(255, 255, 255, 0.55);
+        --accent: #7c3aed;
+        --accent2: #22c55e;
+        --warn: #f59e0b;
+        --danger: #fb7185;
+        --shadow: 0 18px 70px rgba(0, 0, 0, 0.4);
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+      html,
+      body {
+        height: 100%;
+      }
+      body {
+        margin: 0;
+        font-family:
+          ui-sans-serif,
+          system-ui,
+          -apple-system,
+          Segoe UI,
+          Roboto,
+          Helvetica,
+          Arial,
+          "Apple Color Emoji",
+          "Segoe UI Emoji";
+        color: var(--text);
+        background:
+          radial-gradient(
+            1000px 500px at 10% 10%,
+            rgba(124, 58, 237, 0.32),
+            transparent 60%
+          ),
+          radial-gradient(
+            900px 550px at 90% 20%,
+            rgba(34, 197, 94, 0.2),
+            transparent 55%
+          ),
+          radial-gradient(
+            800px 600px at 50% 100%,
+            rgba(59, 130, 246, 0.22),
+            transparent 60%
+          ),
+          var(--bg);
+      }
+
+      a {
+        color: inherit;
+      }
+
+      .wrap {
+        max-width: 1100px;
+        margin: 0 auto;
+        padding: 28px 16px 56px;
+      }
+
+      header {
+        display: flex;
+        align-items: flex-start;
+        justify-content: space-between;
+        gap: 16px;
+        margin-bottom: 18px;
+      }
+
+      .brand {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+      }
+
+      h1 {
+        font-size: 26px;
+        line-height: 1.2;
+        margin: 0;
+        letter-spacing: -0.01em;
+      }
+
+      .subtitle {
+        margin-top: 8px;
+        color: var(--muted);
+        line-height: 1.5;
+        max-width: 58ch;
+      }
+
+      .actions {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        flex-wrap: wrap;
+      }
+
+      .btn {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        padding: 10px 12px;
+        border-radius: 14px;
+        text-decoration: none;
+        background: rgba(255, 255, 255, 0.06);
+        border: 1px solid rgba(255, 255, 255, 0.12);
+        color: rgba(255, 255, 255, 0.92);
+        transition:
+          transform 0.08s ease,
+          background 0.2s ease;
+      }
+
+      .btn:hover {
+        background: rgba(255, 255, 255, 0.09);
+      }
+
+      .btn:active {
+        transform: translateY(1px);
+      }
+
+      .grid {
+        display: grid;
+        grid-template-columns: 1.6fr 1fr;
+        gap: 14px;
+      }
+
+      @media (max-width: 980px) {
+        header {
+          flex-direction: column;
+        }
+        .grid {
+          grid-template-columns: 1fr;
+        }
+      }
+
+      .card {
+        background: var(--card);
+        border: 1px solid var(--border);
+        border-radius: 20px;
+        box-shadow: var(--shadow);
+        overflow: hidden;
+      }
+
+      .card-h {
+        padding: 14px 16px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 10px;
+        background: rgba(255, 255, 255, 0.03);
+        border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+      }
+
+      .card-b {
+        padding: 14px 16px 16px;
+      }
+
+      .pill {
+        font-size: 12px;
+        padding: 5px 10px;
+        border-radius: 999px;
+        background: rgba(124, 58, 237, 0.18);
+        border: 1px solid rgba(124, 58, 237, 0.35);
+        color: rgba(255, 255, 255, 0.88);
+        white-space: nowrap;
+      }
+
+      .k {
+        font-family:
+          ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas,
+          "Liberation Mono", "Courier New", monospace;
+        font-size: 0.95em;
+        padding: 2px 6px;
+        border-radius: 8px;
+        background: rgba(255, 255, 255, 0.07);
+        border: 1px solid rgba(255, 255, 255, 0.12);
+      }
+
+      .steps {
+        margin: 10px 0 0;
+        padding-left: 22px;
+        color: rgba(255, 255, 255, 0.86);
+        line-height: 1.55;
+      }
+
+      .steps li {
+        margin: 10px 0;
+      }
+
+      .illus {
+        margin-top: 14px;
+        border-radius: 16px;
+        overflow: hidden;
+        border: 1px solid rgba(255, 255, 255, 0.12);
+        background: rgba(0, 0, 0, 0.16);
+      }
+
+      .note {
+        margin-top: 14px;
+        border-radius: 16px;
+        padding: 12px 12px;
+        border: 1px solid rgba(255, 255, 255, 0.14);
+        background: rgba(255, 255, 255, 0.05);
+        color: rgba(255, 255, 255, 0.84);
+        line-height: 1.45;
+      }
+
+      .note strong {
+        color: rgba(255, 255, 255, 0.95);
+      }
+
+      .note.warn {
+        border-color: rgba(245, 158, 11, 0.35);
+        background: rgba(245, 158, 11, 0.12);
+      }
+
+      .note.danger {
+        border-color: rgba(251, 113, 133, 0.4);
+        background: rgba(251, 113, 133, 0.12);
+      }
+
+      .two {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 12px;
+      }
+
+      @media (max-width: 720px) {
+        .two {
+          grid-template-columns: 1fr;
+        }
+      }
+
+      .mini {
+        margin-top: 6px;
+        color: var(--muted);
+        font-size: 13px;
+      }
+
+      .hr {
+        height: 1px;
+        background: rgba(255, 255, 255, 0.1);
+        margin: 14px 0;
+      }
+
+      details {
+        border-radius: 16px;
+        border: 1px solid rgba(255, 255, 255, 0.12);
+        background: rgba(255, 255, 255, 0.03);
+        margin: 10px 0;
+        overflow: hidden;
+      }
+
+      summary {
+        cursor: pointer;
+        padding: 12px 12px;
+        list-style: none;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 10px;
+        font-weight: 700;
+      }
+
+      summary::-webkit-details-marker {
+        display: none;
+      }
+
+      .badge {
+        font-size: 12px;
+        padding: 5px 10px;
+        border-radius: 999px;
+        background: rgba(255, 255, 255, 0.06);
+        border: 1px solid rgba(255, 255, 255, 0.12);
+        color: rgba(255, 255, 255, 0.85);
+        white-space: nowrap;
+        font-weight: 700;
+      }
+
+      .sub {
+        padding: 0 12px 12px;
+      }
+
+      footer {
+        color: rgba(255, 255, 255, 0.68);
+        font-size: 12px;
+        line-height: 1.45;
+        margin-top: 10px;
+      }
+
+      .logo {
+        width: 40px;
+        height: 40px;
+        border-radius: 14px;
+        background: linear-gradient(135deg, #7c3aed, #22c55e);
+        box-shadow: 0 14px 40px rgba(0, 0, 0, 0.35);
+      }
+    </style>
+  </head>
+
+  <body>
+    <div class="wrap">
+      <header>
+        <div class="brand">
+          <div class="logo" aria-hidden="true"></div>
+          <div>
+            <h1>Permitir pop-ups (login do Google) — passo a passo</h1>
+            <div class="subtitle">
+              Se você clicou em "Continue with Google (popup)" e a janela de
+              login não apareceu, o navegador provavelmente bloqueou pop-ups.
+              Siga os passos abaixo e defina os pop-ups deste site como
+              <span class="k">Permitir</span>.
+            </div>
+          </div>
+        </div>
+
+        <div class="actions">
+          <a class="btn" href="/" aria-label="Voltar para o app">
+            <span aria-hidden="true">←</span>
+            Voltar
+          </a>
+          <a class="btn" href="#desktop">
+            <span aria-hidden="true">🖥</span>
+            Desktop
+          </a>
+          <a class="btn" href="#mobile">
+            <span aria-hidden="true">📱</span>
+            Celular
+          </a>
+        </div>
+      </header>
+
+      <div class="grid">
+        <section class="card">
+          <div class="card-h">
+            <b>Passos rápidos (funciona na maioria dos navegadores)</b>
+            <span class="pill">Tente estes 4 passos primeiro</span>
+          </div>
+          <div class="card-b">
+            <ol class="steps">
+              <li>
+                Clique no ícone de <span class="k">cadeado</span> /
+                <span class="k">site</span> à esquerda da barra de endereços.
+              </li>
+              <li>
+                Abra <span class="k">Configurações do site</span> (ou
+                configurações do website).
+              </li>
+              <li>
+                Encontre <span class="k">Pop-ups</span> ou
+                <span class="k">Pop-ups e redirecionamentos</span> e defina como
+                <span class="k">Permitir</span>.
+              </li>
+              <li>
+                Volte ao app, <span class="k">atualize</span> e tente novamente
+                "Continue with Google (popup)".
+              </li>
+            </ol>
+
+            <div class="illus" aria-label="Ilustração">
+              <svg
+                viewBox="0 0 920 260"
+                width="100%"
+                height="auto"
+                role="img"
+                aria-label="Ilustração: abrir configurações do site e permitir pop-ups"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <defs>
+                  <linearGradient id="g1" x1="0" x2="1">
+                    <stop offset="0" stop-color="#7c3aed" stop-opacity="0.9" />
+                    <stop offset="1" stop-color="#22c55e" stop-opacity="0.8" />
+                  </linearGradient>
+                  <filter
+                    id="shadow"
+                    x="-20%"
+                    y="-20%"
+                    width="140%"
+                    height="140%"
+                  >
+                    <feDropShadow
+                      dx="0"
+                      dy="10"
+                      stdDeviation="18"
+                      flood-color="#000"
+                      flood-opacity="0.35"
+                    />
+                  </filter>
+                </defs>
+
+                <rect
+                  x="24"
+                  y="30"
+                  width="872"
+                  height="200"
+                  rx="22"
+                  fill="rgba(255,255,255,0.06)"
+                  stroke="rgba(255,255,255,0.14)"
+                  filter="url(#shadow)"
+                />
+
+                <rect
+                  x="60"
+                  y="62"
+                  width="800"
+                  height="54"
+                  rx="16"
+                  fill="rgba(0,0,0,0.22)"
+                  stroke="rgba(255,255,255,0.10)"
+                />
+
+                <circle cx="92" cy="89" r="16" fill="url(#g1)" />
+                <path
+                  d="M92 79c-5 0-9 4-9 9v8c0 5 4 9 9 9s9-4 9-9v-8c0-5-4-9-9-9zm-5 9c0-3 2-5 5-5s5 2 5 5v2h-10v-2z"
+                  fill="rgba(255,255,255,0.95)"
+                />
+
+                <text
+                  x="124"
+                  y="95"
+                  fill="rgba(255,255,255,0.82)"
+                  font-family="ui-monospace, SFMono-Regular, Menlo, Monaco"
+                  font-size="18"
+                >
+                  trippilot.app
+                </text>
+                <text
+                  x="124"
+                  y="116"
+                  fill="rgba(255,255,255,0.45)"
+                  font-family="ui-sans-serif"
+                  font-size="12"
+                >
+                  (exemplo; seu domínio pode ser diferente)
+                </text>
+
+                <path
+                  d="M92 118v32"
+                  stroke="rgba(255,255,255,0.25)"
+                  stroke-width="2"
+                  stroke-dasharray="6 8"
+                />
+
+                <rect
+                  x="60"
+                  y="154"
+                  width="360"
+                  height="58"
+                  rx="16"
+                  fill="rgba(255,255,255,0.06)"
+                  stroke="rgba(255,255,255,0.12)"
+                />
+                <text
+                  x="84"
+                  y="188"
+                  fill="rgba(255,255,255,0.86)"
+                  font-family="ui-sans-serif"
+                  font-size="16"
+                >
+                  Config. do site → Pop-ups → Permitir
+                </text>
+
+                <path
+                  d="M430 182h96"
+                  stroke="rgba(255,255,255,0.30)"
+                  stroke-width="4"
+                  stroke-linecap="round"
+                />
+                <path
+                  d="M520 168l20 14-20 14"
+                  fill="none"
+                  stroke="rgba(255,255,255,0.30)"
+                  stroke-width="4"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                />
+
+                <rect
+                  x="560"
+                  y="154"
+                  width="300"
+                  height="58"
+                  rx="16"
+                  fill="rgba(34,197,94,0.14)"
+                  stroke="rgba(34,197,94,0.35)"
+                />
+                <text
+                  x="590"
+                  y="188"
+                  fill="rgba(255,255,255,0.92)"
+                  font-family="ui-sans-serif"
+                  font-size="16"
+                >
+                  Atualizar → tentar de novo
+                </text>
+              </svg>
+            </div>
+
+            <div class="note warn">
+              <strong>Dica:</strong> Bloqueadores de anúncios / extensões de
+              privacidade (ou bloqueios do sistema) também podem impedir
+              pop-ups. Tente permitir pop-ups para este site temporariamente e
+              tente novamente.
+            </div>
+          </div>
+        </section>
+
+        <aside class="card">
+          <div class="card-h">
+            <b>Solução rápida</b>
+            <span class="pill">Ainda sem pop-up?</span>
+          </div>
+          <div class="card-b">
+            <div class="two">
+              <div class="note">
+                <strong>1) Verifique a barra de endereços</strong>
+                <div class="mini">
+                  Muitos navegadores mostram um ícone de "pop-up bloqueado".
+                  Clique e escolha Permitir.
+                </div>
+              </div>
+              <div class="note">
+                <strong>2) Verifique as configurações globais</strong>
+                <div class="mini">
+                  Se os pop-ups estiverem desativados globalmente, você
+                  precisará permitir para este site nas configurações do
+                  navegador/sistema.
+                </div>
+              </div>
+            </div>
+
+            <div class="hr"></div>
+
+            <div class="note danger">
+              <strong>Ainda bloqueado?</strong>
+              <div class="mini">
+                Você pode usar primeiro "Continue as guest" e depois vincular
+                sua conta Google para sincronizar na nuvem.
+              </div>
+            </div>
+
+            <footer>
+              Observação: Os nomes variam, mas as palavras-chave costumam
+              incluir
+              <span class="k">Configurações do site</span>,
+              <span class="k">Pop-ups</span> e <span class="k">Permitir</span>.
+            </footer>
+          </div>
+        </aside>
+      </div>
+
+      <div id="desktop" style="height: 16px"></div>
+      <section class="card" style="margin-top: 14px">
+        <div class="card-h">
+          <b>Desktop (Windows / macOS)</b>
+          <span class="pill">Chrome / Edge / Safari / Firefox</span>
+        </div>
+        <div class="card-b">
+          <details open>
+            <summary>
+              Chrome (Windows/macOS/Linux)
+              <span class="badge">Recomendado</span>
+            </summary>
+            <div class="sub">
+              <ol class="steps">
+                <li>No app, clique em "Continue with Google (popup)".</li>
+                <li>
+                  Se bloqueado: procure um ícone de "pop-up bloqueado" na barra
+                  de endereços. Clique e permita.
+                </li>
+                <li>
+                  Ou: clique no cadeado (à esquerda) →
+                  <span class="k">Configurações do site</span>.
+                </li>
+                <li>
+                  <span class="k">Pop-ups e redirecionamentos</span> →
+                  <span class="k">Permitir</span>.
+                </li>
+                <li>Atualize e tente novamente.</li>
+              </ol>
+            </div>
+          </details>
+
+          <details>
+            <summary>
+              Microsoft Edge (Windows/macOS)
+              <span class="badge">Parecido com Chrome</span>
+            </summary>
+            <div class="sub">
+              <ol class="steps">
+                <li>
+                  Ícone de informações do site (à esquerda) →
+                  <span class="k">Permissões para este site</span>.
+                </li>
+                <li>
+                  <span class="k">Pop-ups e redirecionamentos</span> → Permitir.
+                </li>
+                <li>Atualize e tente novamente.</li>
+              </ol>
+            </div>
+          </details>
+
+          <details>
+            <summary>
+              Safari (macOS)
+              <span class="badge">macOS</span>
+            </summary>
+            <div class="sub">
+              <ol class="steps">
+                <li>
+                  Menu Safari: <span class="k">Safari</span> →
+                  <span class="k">Ajustes…</span> (ou Preferências).
+                </li>
+                <li>Abra a aba <span class="k">Websites</span>.</li>
+                <li>
+                  Selecione <span class="k">Janelas pop-up</span> à esquerda.
+                </li>
+                <li>
+                  Encontre este site e defina como
+                  <span class="k">Permitir</span>.
+                </li>
+                <li>Atualize e tente novamente.</li>
+              </ol>
+            </div>
+          </details>
+
+          <details>
+            <summary>
+              Firefox (Windows/macOS/Linux)
+              <span class="badge">Painel de permissões</span>
+            </summary>
+            <div class="sub">
+              <ol class="steps">
+                <li>Clique no ícone de informações do site (à esquerda).</li>
+                <li>
+                  No painel, encontre a opção de bloqueio de pop-ups e permita
+                  para este site.
+                </li>
+                <li>Atualize e tente novamente.</li>
+              </ol>
+              <div class="note">
+                Os rótulos variam por versão; o importante é permitir pop-ups
+                para este site.
+              </div>
+            </div>
+          </details>
+        </div>
+      </section>
+
+      <div id="mobile" style="height: 16px"></div>
+      <section class="card" style="margin-top: 14px">
+        <div class="card-h">
+          <b>Celular (iOS / Android)</b>
+          <span class="pill">Safari / Chrome / Samsung Internet</span>
+        </div>
+        <div class="card-b">
+          <details open>
+            <summary>
+              iPhone / iPad: Safari
+              <span class="badge">Ajustes do sistema</span>
+            </summary>
+            <div class="sub">
+              <ol class="steps">
+                <li>
+                  Abra <span class="k">Ajustes</span> →
+                  <span class="k">Safari</span>.
+                </li>
+                <li>Encontre <span class="k">Bloquear pop-ups</span>.</li>
+                <li>Desative (permitir pop-ups).</li>
+                <li>Volte ao navegador, atualize e tente novamente.</li>
+              </ol>
+              <div class="note warn">
+                <strong>Obs.:</strong> Muitos navegadores no iOS (incluindo
+                Chrome) usam WebKit; o comportamento pode depender das
+                configurações do Safari.
+              </div>
+            </div>
+          </details>
+
+          <details>
+            <summary>
+              Android: Chrome
+              <span class="badge">Configurações do navegador</span>
+            </summary>
+            <div class="sub">
+              <ol class="steps">
+                <li>
+                  Menu do Chrome <span class="k">⋮</span> →
+                  <span class="k">Configurações</span>.
+                </li>
+                <li>Abra <span class="k">Configurações do site</span>.</li>
+                <li>
+                  <span class="k">Pop-ups e redirecionamentos</span> → Permitir.
+                </li>
+                <li>Volte, atualize e tente novamente.</li>
+              </ol>
+            </div>
+          </details>
+
+          <details>
+            <summary>
+              Android: Samsung Internet
+              <span class="badge">Permissões do site</span>
+            </summary>
+            <div class="sub">
+              <ol class="steps">
+                <li>Menu (≡) → <span class="k">Configurações</span>.</li>
+                <li>
+                  Abra <span class="k">Sites e downloads</span> ou
+                  <span class="k">Permissões do site</span>.
+                </li>
+                <li>Encontre pop-ups e permita para este site.</li>
+                <li>Atualize e tente novamente.</li>
+              </ol>
+              <div class="note">
+                O caminho varia; o importante é permitir pop-ups nas permissões
+                do site.
+              </div>
+            </div>
+          </details>
+        </div>
+      </section>
+
+      <footer style="margin-top: 16px">
+        Quer cobrir mais navegadores (Arc / Brave / Opera etc.)? Diga quais
+        dispositivos/navegadores você usa e podemos expandir este guia.
+      </footer>
+    </div>
+  </body>
+</html>

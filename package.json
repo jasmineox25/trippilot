@@ -1,0 +1,15 @@
+{
+  "name": "gemini3-hackathon-private",
+  "version": "1.0.0",
+  "description": "Gemini 3 Hackathon 项目",
+  "main": "index.js",
+  "scripts": {
+    "start": "npm run dev",
+    "test": "echo \"请根据实际项目配置测试命令\"",
+    "dev": "cd trippilot && npm run dev",
+    "build": "cd trippilot && npm run build",
+    "preview": "cd trippilot && npm run preview"
+  },
+  "author": "Jasmine",
+  "license": "MIT"
+}

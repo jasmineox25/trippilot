@@ -1,0 +1,786 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>允许 Pop-ups 图文教程 | TripPilot</title>
+    <meta
+      name="description"
+      content="当 Google 登录弹窗没出现时，如何在桌面/手机浏览器中允许 Pop-ups（弹出式窗口）。"
+    />
+
+    <script>
+      (function () {
+        try {
+          var params = new URLSearchParams(location.search);
+          var forced = String(params.get("lang") || "").toLowerCase();
+          var sys =
+            (navigator.languages && navigator.languages[0]) ||
+            navigator.language ||
+            "";
+          var base = String(forced || sys)
+            .toLowerCase()
+            .split("-")[0];
+          var path = String(location.pathname || "");
+
+          var current = "zh";
+          if (path.indexOf("/popup-help/en") !== -1) current = "en";
+          if (path.indexOf("/popup-help/ja") !== -1) current = "ja";
+          if (path.indexOf("/popup-help/ko") !== -1) current = "ko";
+          if (path.indexOf("/popup-help/fr") !== -1) current = "fr";
+          if (path.indexOf("/popup-help/es") !== -1) current = "es";
+          if (path.indexOf("/popup-help/de") !== -1) current = "de";
+          if (path.indexOf("/popup-help/pt") !== -1) current = "pt";
+          if (path.indexOf("/popup-help/ru") !== -1) current = "ru";
+
+          var target = "en";
+          if (forced === "zh" || base === "zh") target = "zh";
+          if (forced === "ja" || base === "ja") target = "ja";
+          if (forced === "ko" || base === "ko") target = "ko";
+          if (forced === "fr" || base === "fr") target = "fr";
+          if (forced === "es" || base === "es") target = "es";
+          if (forced === "de" || base === "de") target = "de";
+          if (forced === "pt" || base === "pt") target = "pt";
+          if (forced === "ru" || base === "ru") target = "ru";
+          if (forced === "en" || base === "en") target = "en";
+
+          if (current !== target) {
+            location.replace(
+              target === "zh" ? "/popup-help/" : "/popup-help/" + target + "/",
+            );
+          }
+        } catch {
+          // ignore
+        }
+      })();
+    </script>
+    <style>
+      :root {
+        --bg: #0b1220;
+        --card: rgba(255, 255, 255, 0.06);
+        --card2: rgba(255, 255, 255, 0.08);
+        --border: rgba(255, 255, 255, 0.12);
+        --text: rgba(255, 255, 255, 0.9);
+        --muted: rgba(255, 255, 255, 0.7);
+        --muted2: rgba(255, 255, 255, 0.55);
+        --accent: #7c3aed;
+        --accent2: #22c55e;
+        --warn: #f59e0b;
+        --danger: #fb7185;
+        --shadow: 0 18px 70px rgba(0, 0, 0, 0.4);
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+      html,
+      body {
+        height: 100%;
+      }
+      body {
+        margin: 0;
+        font-family:
+          ui-sans-serif,
+          system-ui,
+          -apple-system,
+          Segoe UI,
+          Roboto,
+          Helvetica,
+          Arial,
+          "Apple Color Emoji",
+          "Segoe UI Emoji";
+        color: var(--text);
+        background:
+          radial-gradient(
+            1000px 500px at 10% 10%,
+            rgba(124, 58, 237, 0.32),
+            transparent 60%
+          ),
+          radial-gradient(
+            900px 550px at 90% 20%,
+            rgba(34, 197, 94, 0.2),
+            transparent 55%
+          ),
+          radial-gradient(
+            800px 600px at 50% 100%,
+            rgba(59, 130, 246, 0.22),
+            transparent 60%
+          ),
+          var(--bg);
+      }
+
+      a {
+        color: inherit;
+      }
+
+      .wrap {
+        max-width: 1100px;
+        margin: 0 auto;
+        padding: 28px 16px 56px;
+      }
+
+      header {
+        display: flex;
+        align-items: flex-start;
+        justify-content: space-between;
+        gap: 16px;
+        margin-bottom: 18px;
+      }
+
+      .brand {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+      }
+
+      .logo {
+        width: 40px;
+        height: 40px;
+        border-radius: 14px;
+        background: linear-gradient(
+          135deg,
+          rgba(124, 58, 237, 0.9),
+          rgba(34, 197, 94, 0.85)
+        );
+        box-shadow: 0 10px 30px rgba(124, 58, 237, 0.25);
+      }
+
+      h1 {
+        margin: 0;
+        font-size: 22px;
+        letter-spacing: -0.02em;
+      }
+
+      .subtitle {
+        margin-top: 6px;
+        color: var(--muted);
+        font-size: 14px;
+        line-height: 1.5;
+        max-width: 65ch;
+      }
+
+      .actions {
+        display: flex;
+        gap: 10px;
+        flex-wrap: wrap;
+        justify-content: flex-end;
+      }
+
+      .btn {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        padding: 10px 12px;
+        border-radius: 14px;
+        border: 1px solid var(--border);
+        background: var(--card);
+        text-decoration: none;
+        color: var(--text);
+        box-shadow: 0 8px 30px rgba(0, 0, 0, 0.18);
+        transition:
+          transform 0.15s ease,
+          background 0.15s ease,
+          border-color 0.15s ease;
+      }
+      .btn:hover {
+        transform: translateY(-1px);
+        background: var(--card2);
+        border-color: rgba(255, 255, 255, 0.22);
+      }
+
+      .grid {
+        display: grid;
+        grid-template-columns: 1.1fr 0.9fr;
+        gap: 14px;
+      }
+
+      @media (max-width: 900px) {
+        .grid {
+          grid-template-columns: 1fr;
+        }
+        header {
+          flex-direction: column;
+        }
+        .actions {
+          justify-content: flex-start;
+        }
+      }
+
+      .card {
+        background: var(--card);
+        border: 1px solid var(--border);
+        border-radius: 20px;
+        box-shadow: var(--shadow);
+        overflow: hidden;
+      }
+
+      .card-h {
+        padding: 14px 16px;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 10px;
+      }
+      .card-h b {
+        font-size: 14px;
+        letter-spacing: 0.02em;
+      }
+
+      .card-b {
+        padding: 16px;
+      }
+
+      .pill {
+        font-size: 12px;
+        padding: 5px 8px;
+        border-radius: 999px;
+        border: 1px solid rgba(255, 255, 255, 0.12);
+        color: var(--muted);
+      }
+
+      .steps {
+        margin: 0;
+        padding-left: 18px;
+        color: var(--muted);
+        line-height: 1.7;
+        font-size: 14px;
+      }
+
+      .note {
+        margin-top: 10px;
+        padding: 10px 12px;
+        border-radius: 16px;
+        border: 1px solid rgba(255, 255, 255, 0.12);
+        background: rgba(0, 0, 0, 0.18);
+        color: var(--muted);
+        font-size: 13px;
+        line-height: 1.55;
+      }
+      .note strong {
+        color: var(--text);
+      }
+
+      .warn {
+        border-color: rgba(245, 158, 11, 0.35);
+        background: rgba(245, 158, 11, 0.12);
+      }
+
+      .danger {
+        border-color: rgba(251, 113, 133, 0.35);
+        background: rgba(251, 113, 133, 0.12);
+      }
+
+      details {
+        border-top: 1px solid rgba(255, 255, 255, 0.1);
+        padding: 10px 0;
+      }
+
+      details:first-of-type {
+        border-top: none;
+        padding-top: 0;
+      }
+
+      summary {
+        cursor: pointer;
+        list-style: none;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 10px;
+        color: var(--text);
+        font-weight: 750;
+        font-size: 14px;
+      }
+
+      summary::-webkit-details-marker {
+        display: none;
+      }
+
+      .badge {
+        font-size: 12px;
+        padding: 4px 8px;
+        border-radius: 999px;
+        border: 1px solid rgba(255, 255, 255, 0.14);
+        color: var(--muted);
+      }
+
+      .sub {
+        margin-top: 10px;
+        color: var(--muted);
+        font-size: 13px;
+        line-height: 1.6;
+      }
+
+      .k {
+        display: inline-block;
+        padding: 1px 6px;
+        border-radius: 8px;
+        border: 1px solid rgba(255, 255, 255, 0.12);
+        background: rgba(0, 0, 0, 0.18);
+        color: rgba(255, 255, 255, 0.86);
+        font-family:
+          ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas,
+          "Liberation Mono", "Courier New", monospace;
+        font-size: 12px;
+      }
+
+      .illus {
+        margin-top: 12px;
+        border-radius: 18px;
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        background: rgba(0, 0, 0, 0.2);
+        overflow: hidden;
+      }
+
+      footer {
+        margin-top: 18px;
+        color: var(--muted2);
+        font-size: 12px;
+        line-height: 1.6;
+      }
+
+      .two {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 12px;
+      }
+      @media (max-width: 720px) {
+        .two {
+          grid-template-columns: 1fr;
+        }
+      }
+
+      .mini {
+        color: var(--muted2);
+        font-size: 12px;
+      }
+
+      .hr {
+        height: 1px;
+        background: rgba(255, 255, 255, 0.1);
+        margin: 12px 0;
+      }
+    </style>
+  </head>
+
+  <body>
+    <div class="wrap">
+      <header>
+        <div class="brand">
+          <div class="logo" aria-hidden="true"></div>
+          <div>
+            <h1>允许 Pop-ups（弹窗）图文教程</h1>
+            <div class="subtitle">
+              如果你点击“使用 Google
+              登录（弹窗）”但没有出现登录窗口，通常是浏览器拦截了弹窗。
+              按下面的步骤把当前站点的 Pop-ups 设置为
+              <span class="k">Allow</span>。
+            </div>
+          </div>
+        </div>
+
+        <div class="actions">
+          <a class="btn" href="/" aria-label="Back to app">
+            <span aria-hidden="true">←</span>
+            返回应用
+          </a>
+          <a class="btn" href="#desktop">
+            <span aria-hidden="true">🖥</span>
+            桌面端
+          </a>
+          <a class="btn" href="#mobile">
+            <span aria-hidden="true">📱</span>
+            手机端
+          </a>
+        </div>
+      </header>
+
+      <div class="grid">
+        <section class="card">
+          <div class="card-h">
+            <b>通用快速步骤（大多数浏览器）</b>
+            <span class="pill">建议先按这 4 步试</span>
+          </div>
+          <div class="card-b">
+            <ol class="steps">
+              <li>
+                点击地址栏左侧的 <span class="k">锁</span> /
+                <span class="k">网站信息</span> 图标。
+              </li>
+              <li>
+                进入 <span class="k">网站设置</span>（Site settings / Website
+                settings）。
+              </li>
+              <li>
+                找到 <span class="k">Pop-ups</span> 或
+                <span class="k">Pop-ups and redirects</span>，改为
+                <span class="k">Allow</span>。
+              </li>
+              <li>
+                回到应用页面，<span class="k">刷新</span> 后再点一次“使用 Google
+                登录（弹窗）”。
+              </li>
+            </ol>
+
+            <div class="illus" aria-label="Generic illustration">
+              <svg
+                viewBox="0 0 920 260"
+                width="100%"
+                height="auto"
+                role="img"
+                aria-label="示意图：点击地址栏左侧网站图标，进入网站设置并允许 Pop-ups"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <defs>
+                  <linearGradient id="g1" x1="0" x2="1">
+                    <stop offset="0" stop-color="#7c3aed" stop-opacity="0.9" />
+                    <stop offset="1" stop-color="#22c55e" stop-opacity="0.8" />
+                  </linearGradient>
+                  <filter
+                    id="shadow"
+                    x="-20%"
+                    y="-20%"
+                    width="140%"
+                    height="140%"
+                  >
+                    <feDropShadow
+                      dx="0"
+                      dy="10"
+                      stdDeviation="18"
+                      flood-color="#000"
+                      flood-opacity="0.35"
+                    />
+                  </filter>
+                </defs>
+
+                <rect
+                  x="24"
+                  y="30"
+                  width="872"
+                  height="200"
+                  rx="22"
+                  fill="rgba(255,255,255,0.06)"
+                  stroke="rgba(255,255,255,0.14)"
+                  filter="url(#shadow)"
+                />
+
+                <rect
+                  x="60"
+                  y="62"
+                  width="800"
+                  height="54"
+                  rx="16"
+                  fill="rgba(0,0,0,0.22)"
+                  stroke="rgba(255,255,255,0.10)"
+                />
+
+                <circle cx="92" cy="89" r="16" fill="url(#g1)" />
+                <path
+                  d="M92 79c-5 0-9 4-9 9v8c0 5 4 9 9 9s9-4 9-9v-8c0-5-4-9-9-9zm-5 9c0-3 2-5 5-5s5 2 5 5v2h-10v-2z"
+                  fill="rgba(255,255,255,0.95)"
+                />
+
+                <text
+                  x="124"
+                  y="95"
+                  fill="rgba(255,255,255,0.82)"
+                  font-family="ui-monospace, SFMono-Regular, Menlo, Monaco"
+                  font-size="18"
+                >
+                  trippilot.app
+                </text>
+                <text
+                  x="124"
+                  y="116"
+                  fill="rgba(255,255,255,0.45)"
+                  font-family="ui-sans-serif"
+                  font-size="12"
+                >
+                  (示意：你的域名可能不同)
+                </text>
+
+                <path
+                  d="M92 118v32"
+                  stroke="rgba(255,255,255,0.25)"
+                  stroke-width="2"
+                  stroke-dasharray="6 8"
+                />
+
+                <rect
+                  x="60"
+                  y="154"
+                  width="360"
+                  height="58"
+                  rx="16"
+                  fill="rgba(255,255,255,0.06)"
+                  stroke="rgba(255,255,255,0.12)"
+                />
+                <text
+                  x="84"
+                  y="188"
+                  fill="rgba(255,255,255,0.86)"
+                  font-family="ui-sans-serif"
+                  font-size="16"
+                >
+                  网站设置 → Pop-ups → Allow
+                </text>
+
+                <path
+                  d="M430 182h96"
+                  stroke="rgba(255,255,255,0.30)"
+                  stroke-width="4"
+                  stroke-linecap="round"
+                />
+                <path
+                  d="M520 168l20 14-20 14"
+                  fill="none"
+                  stroke="rgba(255,255,255,0.30)"
+                  stroke-width="4"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                />
+
+                <rect
+                  x="560"
+                  y="154"
+                  width="300"
+                  height="58"
+                  rx="16"
+                  fill="rgba(34,197,94,0.14)"
+                  stroke="rgba(34,197,94,0.35)"
+                />
+                <text
+                  x="590"
+                  y="188"
+                  fill="rgba(255,255,255,0.92)"
+                  font-family="ui-sans-serif"
+                  font-size="16"
+                >
+                  刷新页面 → 重新登录
+                </text>
+              </svg>
+            </div>
+
+            <div class="note warn">
+              <strong>提示：</strong
+              >如果你开了广告拦截/隐私保护插件（或系统级拦截），也可能阻止弹窗。
+              可以临时对本网站放行后再试。
+            </div>
+          </div>
+        </section>
+
+        <aside class="card">
+          <div class="card-h">
+            <b>快速排查</b>
+            <span class="pill">登录弹窗仍没出现？</span>
+          </div>
+          <div class="card-b">
+            <div class="two">
+              <div class="note">
+                <strong>1) 看地址栏提示</strong>
+                <div class="mini">
+                  很多浏览器会在地址栏显示“已拦截弹窗”图标，点它选择允许。
+                </div>
+              </div>
+              <div class="note">
+                <strong>2) 看系统/浏览器设置</strong>
+                <div class="mini">
+                  如果全局禁用了 Pop-ups，需要在设置里为当前网站放行。
+                </div>
+              </div>
+            </div>
+
+            <div class="hr"></div>
+
+            <div class="note danger">
+              <strong>仍失败？</strong>
+              <div class="mini">
+                你可以先用“匿名登录/匿名使用”，之后再绑定 Google 账号同步云端。
+              </div>
+            </div>
+
+            <footer>
+              说明：不同浏览器/版本的菜单文字可能略有差异，但关键词通常包含
+              <span class="k">Site settings</span>、<span class="k"
+                >Pop-ups</span
+              >、<span class="k">Allow</span>。
+            </footer>
+          </div>
+        </aside>
+      </div>
+
+      <div id="desktop" style="height: 16px"></div>
+      <section class="card" style="margin-top: 14px">
+        <div class="card-h">
+          <b>桌面端（PC / macOS）</b>
+          <span class="pill">Chrome / Edge / Safari / Firefox</span>
+        </div>
+        <div class="card-b">
+          <details open>
+            <summary>
+              Chrome（Windows/macOS/Linux）
+              <span class="badge">推荐</span>
+            </summary>
+            <div class="sub">
+              <ol class="steps">
+                <li>在登录页面点击“使用 Google 登录（弹窗）”。</li>
+                <li>
+                  如果被拦截：地址栏右侧/末尾可能出现“弹窗被拦截”图标，点击后选择允许。
+                </li>
+                <li>
+                  或者：点击地址栏左侧锁图标 →
+                  <span class="k">Site settings</span>。
+                </li>
+                <li>
+                  找到 <span class="k">Pop-ups and redirects</span> → 设为
+                  <span class="k">Allow</span>。
+                </li>
+                <li>刷新页面，再试一次登录。</li>
+              </ol>
+            </div>
+          </details>
+
+          <details>
+            <summary>
+              Microsoft Edge（Windows/macOS）
+              <span class="badge">类似 Chrome</span>
+            </summary>
+            <div class="sub">
+              <ol class="steps">
+                <li>
+                  地址栏左侧网站信息图标 →
+                  <span class="k">Permissions for this site</span> 或
+                  <span class="k">Site permissions</span>。
+                </li>
+                <li>找到 Pop-ups and redirects → Allow。</li>
+                <li>回到应用刷新，再登录。</li>
+              </ol>
+            </div>
+          </details>
+
+          <details>
+            <summary>
+              Safari（macOS）
+              <span class="badge">mac 专用</span>
+            </summary>
+            <div class="sub">
+              <ol class="steps">
+                <li>
+                  打开 Safari 菜单：<span class="k">Safari</span> →
+                  <span class="k">Settings…</span>（或 Preferences）。
+                </li>
+                <li>进入 <span class="k">Websites</span> 标签。</li>
+                <li>左侧选择 <span class="k">Pop-up Windows</span>。</li>
+                <li>
+                  右侧找到当前网站，将选项改为 <span class="k">Allow</span>。
+                </li>
+                <li>回到页面刷新后再试登录。</li>
+              </ol>
+            </div>
+          </details>
+
+          <details>
+            <summary>
+              Firefox（Windows/macOS/Linux）
+              <span class="badge">权限面板</span>
+            </summary>
+            <div class="sub">
+              <ol class="steps">
+                <li>点击地址栏左侧“网站信息”图标。</li>
+                <li>
+                  打开权限面板，找到“阻止弹出式窗口”相关选项，对当前站点放行。
+                </li>
+                <li>刷新页面，再试登录。</li>
+              </ol>
+              <div class="note">
+                Firefox 的菜单命名在不同版本可能变化；关键是给当前网站允许弹窗。
+              </div>
+            </div>
+          </details>
+        </div>
+      </section>
+
+      <div id="mobile" style="height: 16px"></div>
+      <section class="card" style="margin-top: 14px">
+        <div class="card-h">
+          <b>手机端（iOS / Android）</b>
+          <span class="pill">Safari / Chrome / Samsung Internet</span>
+        </div>
+        <div class="card-b">
+          <details open>
+            <summary>
+              iPhone / iPad：Safari
+              <span class="badge">系统设置</span>
+            </summary>
+            <div class="sub">
+              <ol class="steps">
+                <li>
+                  打开系统：<span class="k">设置</span> →
+                  <span class="k">Safari</span>。
+                </li>
+                <li>
+                  找到 <span class="k">阻止弹出式窗口</span>（Block Pop-ups）。
+                </li>
+                <li>将它关闭（即允许弹窗）。</li>
+                <li>回到浏览器刷新页面，再试登录。</li>
+              </ol>
+              <div class="note warn">
+                <strong>注意：</strong>iOS 上很多浏览器（含 Chrome）底层仍使用
+                WebKit，弹窗限制与 Safari 设置可能相关。
+              </div>
+            </div>
+          </details>
+
+          <details>
+            <summary>
+              Android：Chrome
+              <span class="badge">浏览器设置</span>
+            </summary>
+            <div class="sub">
+              <ol class="steps">
+                <li>
+                  Chrome 右上角 <span class="k">⋮</span> →
+                  <span class="k">Settings</span>。
+                </li>
+                <li>进入 <span class="k">Site settings</span>。</li>
+                <li>
+                  找到 <span class="k">Pop-ups and redirects</span> → 设为
+                  Allow。
+                </li>
+                <li>回到页面刷新，再试登录。</li>
+              </ol>
+            </div>
+          </details>
+
+          <details>
+            <summary>
+              Android：Samsung Internet（三星浏览器）
+              <span class="badge">站点权限</span>
+            </summary>
+            <div class="sub">
+              <ol class="steps">
+                <li>菜单（≡）→ <span class="k">Settings</span>。</li>
+                <li>
+                  进入 <span class="k">Sites and downloads</span> 或
+                  <span class="k">Site permissions</span>。
+                </li>
+                <li>找到 Pop-ups 相关选项，允许当前站点弹窗。</li>
+                <li>刷新页面再试登录。</li>
+              </ol>
+              <div class="note">
+                不同版本入口可能不同；关键是“站点权限 / Site permissions”里允许
+                Pop-ups。
+              </div>
+            </div>
+          </details>
+        </div>
+      </section>
+
+      <footer style="margin-top: 16px">
+        如果你希望我补充更多浏览器（如 Arc / Brave / Opera / QQ 浏览器 / 360 /
+        UC）或加入你指定的截图风格（不含任何版权截图，仅用自绘示意），告诉我你们主要面向的设备和浏览器占比，我可以继续扩充。
+      </footer>
+    </div>
+  </body>
+</html>

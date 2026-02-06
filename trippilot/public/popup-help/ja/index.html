@@ -1,0 +1,791 @@
+<!doctype html>
+<html lang="ja">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>ポップアップ許可ガイド | TripPilot</title>
+    <meta
+      name="description"
+      content="Google ログインのポップアップが表示されない場合、ブラウザがブロックしている可能性があります。PC/スマホの手順でポップアップを許可してください。"
+    />
+
+    <script>
+      (function () {
+        try {
+          var params = new URLSearchParams(location.search);
+          var forced = String(params.get("lang") || "").toLowerCase();
+          var sys =
+            (navigator.languages && navigator.languages[0]) ||
+            navigator.language ||
+            "";
+          var base = String(forced || sys)
+            .toLowerCase()
+            .split("-")[0];
+          var path = String(location.pathname || "");
+
+          var current = "zh";
+          if (path.indexOf("/popup-help/en") !== -1) current = "en";
+          if (path.indexOf("/popup-help/ja") !== -1) current = "ja";
+          if (path.indexOf("/popup-help/ko") !== -1) current = "ko";
+          if (path.indexOf("/popup-help/fr") !== -1) current = "fr";
+          if (path.indexOf("/popup-help/es") !== -1) current = "es";
+          if (path.indexOf("/popup-help/de") !== -1) current = "de";
+          if (path.indexOf("/popup-help/pt") !== -1) current = "pt";
+          if (path.indexOf("/popup-help/ru") !== -1) current = "ru";
+
+          var target = "en";
+          if (forced === "zh" || base === "zh") target = "zh";
+          if (forced === "ja" || base === "ja") target = "ja";
+          if (forced === "ko" || base === "ko") target = "ko";
+          if (forced === "fr" || base === "fr") target = "fr";
+          if (forced === "es" || base === "es") target = "es";
+          if (forced === "de" || base === "de") target = "de";
+          if (forced === "pt" || base === "pt") target = "pt";
+          if (forced === "ru" || base === "ru") target = "ru";
+          if (forced === "en" || base === "en") target = "en";
+
+          if (current !== target) {
+            location.replace(
+              target === "zh" ? "/popup-help/" : "/popup-help/" + target + "/",
+            );
+          }
+        } catch {
+          // ignore
+        }
+      })();
+    </script>
+
+    <style>
+      :root {
+        --bg: #0b1220;
+        --card: rgba(255, 255, 255, 0.06);
+        --card2: rgba(255, 255, 255, 0.08);
+        --border: rgba(255, 255, 255, 0.12);
+        --text: rgba(255, 255, 255, 0.9);
+        --muted: rgba(255, 255, 255, 0.7);
+        --muted2: rgba(255, 255, 255, 0.55);
+        --accent: #7c3aed;
+        --accent2: #22c55e;
+        --warn: #f59e0b;
+        --danger: #fb7185;
+        --shadow: 0 18px 70px rgba(0, 0, 0, 0.4);
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+      html,
+      body {
+        height: 100%;
+      }
+      body {
+        margin: 0;
+        font-family:
+          ui-sans-serif,
+          system-ui,
+          -apple-system,
+          Segoe UI,
+          Roboto,
+          Helvetica,
+          Arial,
+          "Apple Color Emoji",
+          "Segoe UI Emoji";
+        color: var(--text);
+        background:
+          radial-gradient(
+            1000px 500px at 10% 10%,
+            rgba(124, 58, 237, 0.32),
+            transparent 60%
+          ),
+          radial-gradient(
+            900px 550px at 90% 20%,
+            rgba(34, 197, 94, 0.2),
+            transparent 55%
+          ),
+          radial-gradient(
+            800px 600px at 50% 100%,
+            rgba(59, 130, 246, 0.22),
+            transparent 60%
+          ),
+          var(--bg);
+      }
+
+      a {
+        color: inherit;
+      }
+
+      .wrap {
+        max-width: 1100px;
+        margin: 0 auto;
+        padding: 28px 16px 56px;
+      }
+
+      header {
+        display: flex;
+        align-items: flex-start;
+        justify-content: space-between;
+        gap: 16px;
+        margin-bottom: 18px;
+      }
+
+      .brand {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+      }
+
+      h1 {
+        font-size: 26px;
+        line-height: 1.2;
+        margin: 0;
+        letter-spacing: -0.01em;
+      }
+
+      .subtitle {
+        margin-top: 8px;
+        color: var(--muted);
+        line-height: 1.5;
+        max-width: 58ch;
+      }
+
+      .actions {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        flex-wrap: wrap;
+      }
+
+      .btn {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        padding: 10px 12px;
+        border-radius: 14px;
+        text-decoration: none;
+        background: rgba(255, 255, 255, 0.06);
+        border: 1px solid rgba(255, 255, 255, 0.12);
+        color: rgba(255, 255, 255, 0.92);
+        transition:
+          transform 0.08s ease,
+          background 0.2s ease;
+      }
+
+      .btn:hover {
+        background: rgba(255, 255, 255, 0.09);
+      }
+
+      .btn:active {
+        transform: translateY(1px);
+      }
+
+      .grid {
+        display: grid;
+        grid-template-columns: 1.6fr 1fr;
+        gap: 14px;
+      }
+
+      @media (max-width: 980px) {
+        header {
+          flex-direction: column;
+        }
+        .grid {
+          grid-template-columns: 1fr;
+        }
+      }
+
+      .card {
+        background: var(--card);
+        border: 1px solid var(--border);
+        border-radius: 20px;
+        box-shadow: var(--shadow);
+        overflow: hidden;
+      }
+
+      .card-h {
+        padding: 14px 16px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 10px;
+        background: rgba(255, 255, 255, 0.03);
+        border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+      }
+
+      .card-b {
+        padding: 14px 16px 16px;
+      }
+
+      .pill {
+        font-size: 12px;
+        padding: 5px 10px;
+        border-radius: 999px;
+        background: rgba(124, 58, 237, 0.18);
+        border: 1px solid rgba(124, 58, 237, 0.35);
+        color: rgba(255, 255, 255, 0.88);
+        white-space: nowrap;
+      }
+
+      .k {
+        font-family:
+          ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas,
+          "Liberation Mono", "Courier New", monospace;
+        font-size: 0.95em;
+        padding: 2px 6px;
+        border-radius: 8px;
+        background: rgba(255, 255, 255, 0.07);
+        border: 1px solid rgba(255, 255, 255, 0.12);
+      }
+
+      .steps {
+        margin: 10px 0 0;
+        padding-left: 22px;
+        color: rgba(255, 255, 255, 0.86);
+        line-height: 1.55;
+      }
+
+      .steps li {
+        margin: 10px 0;
+      }
+
+      .illus {
+        margin-top: 14px;
+        border-radius: 16px;
+        overflow: hidden;
+        border: 1px solid rgba(255, 255, 255, 0.12);
+        background: rgba(0, 0, 0, 0.16);
+      }
+
+      .note {
+        margin-top: 14px;
+        border-radius: 16px;
+        padding: 12px 12px;
+        border: 1px solid rgba(255, 255, 255, 0.14);
+        background: rgba(255, 255, 255, 0.05);
+        color: rgba(255, 255, 255, 0.84);
+        line-height: 1.45;
+      }
+
+      .note strong {
+        color: rgba(255, 255, 255, 0.95);
+      }
+
+      .note.warn {
+        border-color: rgba(245, 158, 11, 0.35);
+        background: rgba(245, 158, 11, 0.12);
+      }
+
+      .note.danger {
+        border-color: rgba(251, 113, 133, 0.4);
+        background: rgba(251, 113, 133, 0.12);
+      }
+
+      .two {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 12px;
+      }
+
+      @media (max-width: 720px) {
+        .two {
+          grid-template-columns: 1fr;
+        }
+      }
+
+      .mini {
+        margin-top: 6px;
+        color: var(--muted);
+        font-size: 13px;
+      }
+
+      .hr {
+        height: 1px;
+        background: rgba(255, 255, 255, 0.1);
+        margin: 14px 0;
+      }
+
+      details {
+        border-radius: 16px;
+        border: 1px solid rgba(255, 255, 255, 0.12);
+        background: rgba(255, 255, 255, 0.03);
+        margin: 10px 0;
+        overflow: hidden;
+      }
+
+      summary {
+        cursor: pointer;
+        padding: 12px 12px;
+        list-style: none;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 10px;
+        font-weight: 700;
+      }
+
+      summary::-webkit-details-marker {
+        display: none;
+      }
+
+      .badge {
+        font-size: 12px;
+        padding: 5px 10px;
+        border-radius: 999px;
+        background: rgba(255, 255, 255, 0.06);
+        border: 1px solid rgba(255, 255, 255, 0.12);
+        color: rgba(255, 255, 255, 0.85);
+        white-space: nowrap;
+        font-weight: 700;
+      }
+
+      .sub {
+        padding: 0 12px 12px;
+      }
+
+      footer {
+        color: rgba(255, 255, 255, 0.68);
+        font-size: 12px;
+        line-height: 1.45;
+        margin-top: 10px;
+      }
+
+      .logo {
+        width: 40px;
+        height: 40px;
+        border-radius: 14px;
+        background: linear-gradient(135deg, #7c3aed, #22c55e);
+        box-shadow: 0 14px 40px rgba(0, 0, 0, 0.35);
+      }
+    </style>
+  </head>
+
+  <body>
+    <div class="wrap">
+      <header>
+        <div class="brand">
+          <div class="logo" aria-hidden="true"></div>
+          <div>
+            <h1>ポップアップを許可する（Googleログイン）— 手順</h1>
+            <div class="subtitle">
+              「Googleで続行（ポップアップ）」を押したのにログイン画面が出ない場合、
+              ブラウザがポップアップをブロックしている可能性があります。
+              下の手順で、このサイトのポップアップ設定を
+              <span class="k">許可</span> にしてください。
+            </div>
+          </div>
+        </div>
+
+        <div class="actions">
+          <a class="btn" href="/" aria-label="アプリに戻る">
+            <span aria-hidden="true">←</span>
+            アプリに戻る
+          </a>
+          <a class="btn" href="#desktop">
+            <span aria-hidden="true">🖥</span>
+            PC
+          </a>
+          <a class="btn" href="#mobile">
+            <span aria-hidden="true">📱</span>
+            スマホ
+          </a>
+        </div>
+      </header>
+
+      <div class="grid">
+        <section class="card">
+          <div class="card-h">
+            <b>まずは簡易手順（多くのブラウザで共通）</b>
+            <span class="pill">まずは4ステップ</span>
+          </div>
+          <div class="card-b">
+            <ol class="steps">
+              <li>
+                アドレスバー左側の <span class="k">鍵</span> /
+                <span class="k">サイト</span>
+                アイコンをクリックします。
+              </li>
+              <li>
+                <span class="k">サイトの設定</span>（または Web
+                サイト設定）を開きます。
+              </li>
+              <li>
+                <span class="k">ポップアップ</span> または
+                <span class="k">ポップアップとリダイレクト</span> を探して
+                <span class="k">許可</span> にします。
+              </li>
+              <li>
+                アプリに戻って <span class="k">更新</span> し、
+                「Googleで続行（ポップアップ）」をもう一度試します。
+              </li>
+            </ol>
+
+            <div class="illus" aria-label="説明図">
+              <svg
+                viewBox="0 0 920 260"
+                width="100%"
+                height="auto"
+                role="img"
+                aria-label="説明図: サイト設定を開いてポップアップを許可する"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <defs>
+                  <linearGradient id="g1" x1="0" x2="1">
+                    <stop offset="0" stop-color="#7c3aed" stop-opacity="0.9" />
+                    <stop offset="1" stop-color="#22c55e" stop-opacity="0.8" />
+                  </linearGradient>
+                  <filter
+                    id="shadow"
+                    x="-20%"
+                    y="-20%"
+                    width="140%"
+                    height="140%"
+                  >
+                    <feDropShadow
+                      dx="0"
+                      dy="10"
+                      stdDeviation="18"
+                      flood-color="#000"
+                      flood-opacity="0.35"
+                    />
+                  </filter>
+                </defs>
+
+                <rect
+                  x="24"
+                  y="30"
+                  width="872"
+                  height="200"
+                  rx="22"
+                  fill="rgba(255,255,255,0.06)"
+                  stroke="rgba(255,255,255,0.14)"
+                  filter="url(#shadow)"
+                />
+
+                <rect
+                  x="60"
+                  y="62"
+                  width="800"
+                  height="54"
+                  rx="16"
+                  fill="rgba(0,0,0,0.22)"
+                  stroke="rgba(255,255,255,0.10)"
+                />
+
+                <circle cx="92" cy="89" r="16" fill="url(#g1)" />
+                <path
+                  d="M92 79c-5 0-9 4-9 9v8c0 5 4 9 9 9s9-4 9-9v-8c0-5-4-9-9-9zm-5 9c0-3 2-5 5-5s5 2 5 5v2h-10v-2z"
+                  fill="rgba(255,255,255,0.95)"
+                />
+
+                <text
+                  x="124"
+                  y="95"
+                  fill="rgba(255,255,255,0.82)"
+                  font-family="ui-monospace, SFMono-Regular, Menlo, Monaco"
+                  font-size="18"
+                >
+                  trippilot.app
+                </text>
+                <text
+                  x="124"
+                  y="116"
+                  fill="rgba(255,255,255,0.45)"
+                  font-family="ui-sans-serif"
+                  font-size="12"
+                >
+                  （例：実際のドメインは異なる場合があります）
+                </text>
+
+                <path
+                  d="M92 118v32"
+                  stroke="rgba(255,255,255,0.25)"
+                  stroke-width="2"
+                  stroke-dasharray="6 8"
+                />
+
+                <rect
+                  x="60"
+                  y="154"
+                  width="360"
+                  height="58"
+                  rx="16"
+                  fill="rgba(255,255,255,0.06)"
+                  stroke="rgba(255,255,255,0.12)"
+                />
+                <text
+                  x="84"
+                  y="188"
+                  fill="rgba(255,255,255,0.86)"
+                  font-family="ui-sans-serif"
+                  font-size="16"
+                >
+                  サイト設定 → ポップアップ → 許可
+                </text>
+
+                <path
+                  d="M430 182h96"
+                  stroke="rgba(255,255,255,0.30)"
+                  stroke-width="4"
+                  stroke-linecap="round"
+                />
+                <path
+                  d="M520 168l20 14-20 14"
+                  fill="none"
+                  stroke="rgba(255,255,255,0.30)"
+                  stroke-width="4"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                />
+
+                <rect
+                  x="560"
+                  y="154"
+                  width="300"
+                  height="58"
+                  rx="16"
+                  fill="rgba(34,197,94,0.14)"
+                  stroke="rgba(34,197,94,0.35)"
+                />
+                <text
+                  x="590"
+                  y="188"
+                  fill="rgba(255,255,255,0.92)"
+                  font-family="ui-sans-serif"
+                  font-size="16"
+                >
+                  更新 → もう一度ログイン
+                </text>
+              </svg>
+            </div>
+
+            <div class="note warn">
+              <strong>ヒント:</strong> 広告ブロッカーやプライバシー拡張、OS
+              レベルの設定で ポップアップが止められることがあります。
+              まずはこのサイトだけ一時的に許可して、再度お試しください。
+            </div>
+          </div>
+        </section>
+
+        <aside class="card">
+          <div class="card-h">
+            <b>簡単なトラブルシュート</b>
+            <span class="pill">まだ出ない？</span>
+          </div>
+          <div class="card-b">
+            <div class="two">
+              <div class="note">
+                <strong>1) アドレスバーを確認</strong>
+                <div class="mini">
+                  多くのブラウザでは「ポップアップがブロックされました」アイコンが
+                  アドレスバーに表示されます。クリックして許可してください。
+                </div>
+              </div>
+              <div class="note">
+                <strong>2) グローバル設定を確認</strong>
+                <div class="mini">
+                  ポップアップが全体設定で無効になっている場合、このサイトを例外として
+                  許可する必要があります。
+                </div>
+              </div>
+            </div>
+
+            <div class="hr"></div>
+
+            <div class="note danger">
+              <strong>それでもブロックされる場合</strong>
+              <div class="mini">
+                いったん「ゲストとして続行」で進み、あとから Google アカウントを
+                連携してクラウド同期することもできます。
+              </div>
+            </div>
+
+            <footer>
+              メニュー名はブラウザ/バージョンで少し異なりますが、 だいたい
+              <span class="k">サイト設定</span>、
+              <span class="k">ポップアップ</span>、
+              <span class="k">許可</span> がキーワードです。
+            </footer>
+          </div>
+        </aside>
+      </div>
+
+      <div id="desktop" style="height: 16px"></div>
+      <section class="card" style="margin-top: 14px">
+        <div class="card-h">
+          <b>PC（Windows / macOS）</b>
+          <span class="pill">Chrome / Edge / Safari / Firefox</span>
+        </div>
+        <div class="card-b">
+          <details open>
+            <summary>
+              Chrome（Windows/macOS/Linux）
+              <span class="badge">おすすめ</span>
+            </summary>
+            <div class="sub">
+              <ol class="steps">
+                <li>アプリで「Googleで続行（ポップアップ）」を押します。</li>
+                <li>
+                  ブロックされた場合：アドレスバー右側に「ポップアップがブロックされました」
+                  アイコンが出ることがあります。クリックして許可してください。
+                </li>
+                <li>
+                  もしくは：鍵アイコン（アドレスバー左）→
+                  <span class="k">サイト設定</span>
+                </li>
+                <li>
+                  <span class="k">ポップアップとリダイレクト</span> →
+                  <span class="k">許可</span>
+                </li>
+                <li>更新して、もう一度ログインを試します。</li>
+              </ol>
+            </div>
+          </details>
+
+          <details>
+            <summary>
+              Microsoft Edge（Windows/macOS）
+              <span class="badge">Chrome とほぼ同じ</span>
+            </summary>
+            <div class="sub">
+              <ol class="steps">
+                <li>
+                  サイト情報アイコン（アドレスバー左）→
+                  <span class="k">このサイトのアクセス許可</span> または
+                  <span class="k">サイトのアクセス許可</span>
+                </li>
+                <li>「ポップアップとリダイレクト」→ 許可</li>
+                <li>アプリを更新して、もう一度試します。</li>
+              </ol>
+            </div>
+          </details>
+
+          <details>
+            <summary>
+              Safari（macOS）
+              <span class="badge">macOS</span>
+            </summary>
+            <div class="sub">
+              <ol class="steps">
+                <li>
+                  Safari メニュー：<span class="k">Safari</span> →
+                  <span class="k">設定…</span>（または環境設定）
+                </li>
+                <li><span class="k">Webサイト</span> タブを開きます。</li>
+                <li>
+                  左の
+                  <span class="k">ポップアップウインドウ</span> を選びます。
+                </li>
+                <li>
+                  右側でこのサイトを見つけて
+                  <span class="k">許可</span> にします。
+                </li>
+                <li>更新して、もう一度ログインを試します。</li>
+              </ol>
+            </div>
+          </details>
+
+          <details>
+            <summary>
+              Firefox（Windows/macOS/Linux）
+              <span class="badge">権限パネル</span>
+            </summary>
+            <div class="sub">
+              <ol class="steps">
+                <li>サイト情報アイコン（アドレスバー左）をクリックします。</li>
+                <li>
+                  権限パネルでポップアップ関連の設定を探し、このサイトで許可します。
+                </li>
+                <li>更新して、もう一度ログインを試します。</li>
+              </ol>
+              <div class="note">
+                Firefox はバージョンにより表示が異なることがあります。
+                要点は「このサイトのポップアップを許可」にすることです。
+              </div>
+            </div>
+          </details>
+        </div>
+      </section>
+
+      <div id="mobile" style="height: 16px"></div>
+      <section class="card" style="margin-top: 14px">
+        <div class="card-h">
+          <b>スマホ（iOS / Android）</b>
+          <span class="pill">Safari / Chrome / Samsung Internet</span>
+        </div>
+        <div class="card-b">
+          <details open>
+            <summary>
+              iPhone / iPad：Safari
+              <span class="badge">システム設定</span>
+            </summary>
+            <div class="sub">
+              <ol class="steps">
+                <li>
+                  <span class="k">設定</span> →
+                  <span class="k">Safari</span> を開きます。
+                </li>
+                <li>
+                  <span class="k">ポップアップブロック</span> を探します。
+                </li>
+                <li>オフにします（ポップアップを許可）。</li>
+                <li>ブラウザに戻って更新し、もう一度試します。</li>
+              </ol>
+              <div class="note warn">
+                <strong>注:</strong> iOS の多くのブラウザ（Chrome
+                など）も内部的には WebKit を使うため、 ポップアップ挙動が Safari
+                設定の影響を受けることがあります。
+              </div>
+            </div>
+          </details>
+
+          <details>
+            <summary>
+              Android：Chrome
+              <span class="badge">ブラウザ設定</span>
+            </summary>
+            <div class="sub">
+              <ol class="steps">
+                <li>
+                  Chrome メニュー <span class="k">⋮</span> →
+                  <span class="k">設定</span>
+                </li>
+                <li><span class="k">サイトの設定</span> を開きます。</li>
+                <li>
+                  <span class="k">ポップアップとリダイレクト</span> → 許可
+                </li>
+                <li>戻って更新し、もう一度試します。</li>
+              </ol>
+            </div>
+          </details>
+
+          <details>
+            <summary>
+              Android：Samsung Internet
+              <span class="badge">サイト権限</span>
+            </summary>
+            <div class="sub">
+              <ol class="steps">
+                <li>メニュー（≡）→ <span class="k">設定</span></li>
+                <li>
+                  <span class="k">サイトとダウンロード</span> または
+                  <span class="k">サイトのアクセス許可</span> を開きます。
+                </li>
+                <li>ポップアップ設定を探し、このサイトを許可します。</li>
+                <li>更新して、もう一度試します。</li>
+              </ol>
+              <div class="note">
+                入口はバージョンにより異なります。
+                要点は「サイト権限でポップアップを許可」です。
+              </div>
+            </div>
+          </details>
+        </div>
+      </section>
+
+      <footer style="margin-top: 16px">
+        Arc / Brave / Opera
+        など他のブラウザも追記できます（著作権のあるスクリーンショットは使わず、
+        自作の図のみで作成します）。対象のデバイス/ブラウザを教えてください。
+      </footer>
+    </div>
+  </body>
+</html>

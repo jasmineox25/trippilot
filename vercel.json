@@ -1,0 +1,27 @@
+{
+  "framework": "vite",
+  "installCommand": "cd trippilot && npm ci",
+  "buildCommand": "cd trippilot && npm run build",
+  "outputDirectory": "trippilot/dist",
+  "headers": [
+    {
+      "source": "/(.*)",
+      "headers": [
+        {
+          "key": "Cross-Origin-Opener-Policy",
+          "value": "same-origin-allow-popups"
+        },
+        {
+          "key": "Cross-Origin-Embedder-Policy",
+          "value": "unsafe-none"
+        }
+      ]
+    }
+  ],
+  "rewrites": [
+    {
+      "source": "/(.*)",
+      "destination": "/index.html"
+    }
+  ]
+}
