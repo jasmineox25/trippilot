@@ -1,8 +1,8 @@
-# TripPilot — Gemini 3 Hackathon Submission
+# TripPilot Orpin — Gemini 3 Hackathon Submission
 
 > **AI-powered travel planning that actually works.** Turn messy travel ideas into executable, constraint-aware itineraries using Gemini 3's multimodal and structured reasoning capabilities.
 
-[![Live Demo](https://img.shields.io/badge/Live-Demo-blue)](https://trippilot.vercel.app)
+[![Live Demo](https://img.shields.io/badge/Live-Demo-blue)](https://trippilot-orpin.vercel.app)
 [![Built with Gemini 3](https://img.shields.io/badge/Built%20with-Gemini%203-orange)](https://ai.google.dev/)
 
 ---
@@ -16,11 +16,11 @@ Planning a multi-stop trip sounds simple, but real-world constraints make it sur
 
 Most travel apps ignore these constraints. You end up with a "plan" that falls apart the moment you start walking.
 
-## Our Solution: TripPilot
+## Our Solution: TripPilot Orpin
 
-TripPilot combines **deterministic constraint checking** with **Gemini 3's reasoning capabilities** to create plans that actually work.
+TripPilot Orpin combines **deterministic constraint checking** with **Gemini 3's reasoning capabilities** to create plans that actually work.
 
-### How Gemini 3 Powers TripPilot
+### How Gemini 3 Powers TripPilot Orpin
 
 | Capability | Gemini 3 Feature Used | What It Does |
 |------------|----------------------|--------------|
@@ -75,7 +75,7 @@ When conflicts are detected, Gemini 3 reasons through the problem:
 ```mermaid
 flowchart LR
   subgraph Browser["Browser (React + TypeScript)"]
-    UI["TripPilot UI"]
+    UI["TripPilot Orpin UI"]
     Chat["Chat Mode\n(Multi-turn)"]
     Plan["Plan Mode\n(Structured)"]
     Voice["Voice Input\n(Hold-to-talk)"]
@@ -185,7 +185,7 @@ npm run dev
 
 ## Demo
 
-- **Live App**: [trippilot.vercel.app](https://trippilot.vercel.app)
+- **Live App**: [trippilot-orpin.vercel.app](https://trippilot-orpin.vercel.app)
 - **Video Demo**: [3-minute walkthrough](link-to-video)
 
 ### Demo Workflow
@@ -198,9 +198,9 @@ npm run dev
 
 ---
 
-## What Makes TripPilot Different
+## What Makes TripPilot Orpin Different
 
-| Traditional Travel Apps | TripPilot |
+| Traditional Travel Apps | TripPilot Orpin |
 |------------------------|-----------|
 | Lists of places | **Constraint-aware schedules** |
 | Free-form chat | **Structured, actionable JSON** |

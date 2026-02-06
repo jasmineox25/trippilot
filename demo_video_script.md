@@ -1,6 +1,6 @@
-# TripPilot × Gemini 3 Hackathon — 3-Minute Demo Script
+# TripPilot Orpin × Gemini 3 Hackathon — 3-Minute Demo Script
 
-> **目标**：3分钟内展示 TripPilot 如何用 Gemini 3 实现“现实可行”的智能旅行规划。
+> **目标**：3分钟内展示 TripPilot Orpin 如何用 Gemini 3 实现“现实可行”的智能旅行规划。
 > **主线**：用户输入（语音/文本）→ 检查约束 → Gemini 3 检测与推理 → 自动修正 → 一键导出。
 
 ---
@@ -9,11 +9,11 @@
 
 **画面**：
 
-- TripPilot 首页 Logo，快速切换到一张 Google 地图，标出多个景点。
+- TripPilot Orpin 首页 Logo，快速切换到一张 Google 地图，标出多个景点。
 
 **旁白**：
 “Planning a trip looks easy, but real-world constraints—like opening hours and travel time—make it hard to get right.”
-“Meet TripPilot, powered by Gemini 3. Let’s see how it makes travel planning truly smart.”
+"Meet TripPilot Orpin, powered by Gemini 3. Let’s see how it makes travel planning truly smart."
 
 ---
 
@@ -61,7 +61,7 @@
 - 时间轴变绿。
 
 **旁白**：
-“TripPilot sends a full constraint snapshot to Gemini 3. Instead of chat, Gemini returns structured JSON—detecting the conflict and suggesting a fix. The app auto-applies the solution.”
+"TripPilot Orpin sends a full constraint snapshot to Gemini 3. Instead of chat, Gemini returns structured JSON—detecting the conflict and suggesting a fix. The app auto-applies the solution."
 
 ---
 
@@ -98,7 +98,7 @@
 - 快速展示架构图、Gemini 3 Hackathon Logo。
 
 **旁白**：
-“TripPilot: Built with React, Vite, and Gemini 3. Smart, constraint-aware planning—ready for real travel. Thank you!”
+"TripPilot Orpin: Built with React, Vite, and Gemini 3. Smart, constraint-aware planning—ready for real travel. Thank you!"
 
 ---
 

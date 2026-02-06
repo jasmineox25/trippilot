@@ -2,7 +2,7 @@
 
 ## 200-word project summary
 
-TripPilot is a web-based trip planning app that turns messy travel intent into a feasible, time-aware itinerary. Planning a multi-stop day sounds simple until real-world constraints break the plan: opening hours, travel time between stops, limited daylight, and recommended stay durations. TripPilot combines a deterministic feasibility engine with Gemini 3 to help users move from “a list of places” to a plan that can actually work.
+TripPilot Orpin is a web-based trip planning app that turns messy travel intent into a feasible, time-aware itinerary. Planning a multi-stop day sounds simple until real-world constraints break the plan: opening hours, travel time between stops, limited daylight, and recommended stay durations. TripPilot Orpin combines a deterministic feasibility engine with Gemini 3 to help users move from “a list of places” to a plan that can actually work.
 
 Users pick destinations, the app computes route legs and evaluates timing feasibility, then surfaces issues like “arrives after closing” or “not enough time to visit everything.” When conflicts are detected, Gemini proposes structured edits (not just chat) such as reordering stops, reducing stay time at a specific place, or starting earlier. If Gemini suggests a reorder that changes the itinerary, the app applies it and recalculates routes to show an improved plan.
 
